@@ -1,4 +1,40 @@
-<?php include 'connection.php'; ?>
+<?php 
+  if($_POST) {
+  
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "mine";
+  
+   
+  // Database Connection
+  $conn = new mysqli($servername, $username, $password, $database);
+  
+  // Check if error
+  if($conn->connect_error) {
+    echo "Connection Error";
+  }
+  
+  // username & Password
+  $user= $_POST["username"];
+  $pass= $_POST["password"];
+  
+  // Sql Query
+  $sql = "INSERT INTO information (username,password) VALUES ('$user', '$pass')";
+ 
+  if($conn->query($sql)) {
+   echo "Data stored successfully";
+  } else {
+   echo "Something went wrong";
+  }
+   
+   $conn->close();
+}
+?>
+      
+      
+      
+      <?php include 'connection.php'; ?>
 <!DOCTYPE html>
 <html>
     <head>
